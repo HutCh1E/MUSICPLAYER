@@ -55,7 +55,7 @@ const songs = [
     file: "song5.mp3",
     video: "video5.mp4",
     image: "creator5.jpg",
-    artist: "Kendrick Lamar",
+    artist: "Kendrick Lamar & SZA",
     lyrics: [
       { time: 1.80, text: "This may be the night that my dreams might let me know" },
       { time: 4.00, text: "All the stars approach you" },
