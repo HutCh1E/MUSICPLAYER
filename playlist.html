@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Music Playlist</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="playlist.css" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+    .playlist li {
+      cursor: pointer;
+      list-style: none;
+      margin: 15px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .playlist img {
+      width: 50px;
+      height: 50px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+    video#previewVideo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+  </style>
+</head>
+
+<body>
+  <video id="previewVideo" autoplay muted loop>
+    <source src="video1.mp4" type="video/mp4" />
+  </video>
+
+  <div class="playlist">
+    <h1>Iloveyou Mamiiii</h1>
+    <ul>
+      <li data-video="video1.mp4" onclick="playSong(0)">
+        <img src="creator1.jpg" alt="Judas" />
+        <span>Judas - Lady Gaga</span>
+      </li>
+      <li data-video="video3.mp4" onclick="playSong(1)">
+        <img src="creator3.jpg" alt="To The Bone" />
+        <span>To The Bone - Pamungkas</span>
+      </li>
+      <li data-video="video5.mp4" onclick="playSong(2)">
+        <img src="creator5.jpg" alt="All The Stars" />
+        <span>All The Stars - Kendrick Lamar & SZA</span>
+      </li>
+    </ul>
+  </div>
+
+  <script>
+    const previewVideo = document.getElementById('previewVideo');
+    const videoSource = previewVideo.querySelector('source');
+    const playlistItems = document.querySelectorAll('.playlist li');
+
+    playlistItems.forEach(item => {
+      const videoFile = item.getAttribute('data-video');
+
+      item.addEventListener('mouseenter', () => {
+        if (videoSource.getAttribute('src') !== videoFile) {
+          videoSource.setAttribute('src', videoFile);
+          previewVideo.load();
+          previewVideo.play();
+        }
+      });
+
+      item.addEventListener('mouseleave', () => {
+        // Optional: Return to default video when hover ends
+        videoSource.setAttribute('src', 'video1.mp4');
+        previewVideo.load();
+        previewVideo.play();
+      });
+    });
+
+    function playSong(index) {
+      window.location.href = `index.html?song=${index}`;
+    }
+  </script>
+</body>
+</html>
