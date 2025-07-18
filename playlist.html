@@ -56,6 +56,9 @@
         <img src="creator5.jpg" alt="All The Stars" />
         <span>All The Stars - Kendrick Lamar & SZA</span>
       </li>
+      <li data-video="consume.mp4" onclick="playSong(3)">
+        <img src="consume.jpg" alt="Consume" />
+        <span>Consume - Chase Atlantic</span>
     </ul>
   </div>
 
@@ -76,7 +79,7 @@
       });
 
       item.addEventListener('mouseleave', () => {
-        // Optional: Return to default video when hover ends
+       
         videoSource.setAttribute('src', 'video1.mp4');
         previewVideo.load();
         previewVideo.play();
