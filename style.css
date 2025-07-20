@@ -29,6 +29,8 @@ video#bgVideo {
   height: 100%;
   padding: 20px;
   flex-direction: column;
+  max-width: 90%;
+  margin: auto;
 }
 
 .panel {
@@ -124,13 +126,39 @@ video#bgVideo {
 }
 
 .controls {
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.controls button {
+  padding: 10px 14px;
+  font-size: 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.controls button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .volume-control {
+  margin-top: 15px;
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
+  width: 100%;
+}
+
+.volume-control input[type="range"] {
+  flex: 1;
+  accent-color: #2196f3;
 }
 
 .back-button {
@@ -237,5 +265,23 @@ button:hover {
   .creator-info {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .controls {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .volume-control {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .controls button {
+    width: 100%;
+  }
+
+  .volume-control input[type="range"] {
+    width: 100%;
   }
 }
