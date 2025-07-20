@@ -1,3 +1,4 @@
+/* Base Reset */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -125,18 +126,17 @@ video#bgVideo {
   cursor: pointer;
 }
 
-/* 🔁 Playback buttons in one horizontal row */
+/* 🎵 Playback Buttons Row */
 .playback-buttons {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 15px;
-  flex-wrap: nowrap;
-  flex-shrink: 0;
   margin-top: 20px;
+  flex-wrap: nowrap;
 }
 
-/* Volume under the playback buttons */
+/* 🔊 Volume Control Below */
 .volume-control {
   margin-top: 15px;
   display: flex;
@@ -146,12 +146,13 @@ video#bgVideo {
   width: 100%;
 }
 
+/* Style Range Slider */
 .volume-control input[type="range"] {
   width: 150px;
   accent-color: #1db954;
 }
 
-/* Playback button styles */
+/* 🔘 Button Appearance */
 .btn-play,
 .btn-prev,
 .btn-next,
@@ -170,6 +171,7 @@ video#bgVideo {
 .btn-prev, .btn-next { color: #ffffff; }
 .btn-loop { color: #f39c12; }
 
+/* 🔙 Back Button */
 .back-button {
   position: absolute;
   top: 20px;
@@ -183,7 +185,7 @@ video#bgVideo {
   text-decoration: none;
 }
 
-/* Optional: Button base styles */
+/* 🧠 Base for All Buttons */
 button {
   all: unset;
   display: flex;
@@ -203,7 +205,7 @@ button:hover {
   color: #b91d1d;
 }
 
-/* ✅ RESPONSIVE DESIGN FIX */
+/* 📱 Responsive Fix */
 @media (max-width: 600px) {
   body {
     overflow-y: auto;
