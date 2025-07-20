@@ -31,33 +31,29 @@
         </div>
 
         <div class="button-group">
-          <!-- Volume -->
+          <!-- Playback Buttons Row -->
+          <div class="playback-buttons">
+            <button id="prevBtn" class="btn-prev">⏮</button>
+            <button id="playPauseBtn" class="btn-play">
+              <span id="playIcon">▶</span>
+            </button>
+            <button id="nextBtn" class="btn-next">⏭</button>
+            <button id="loopBtn" class="btn-loop" title="No Repeat">
+              <svg id="loopIcon" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="17 1 21 5 17 9" />
+                <path d="M3 11V9a4 4 0 0 1 4-4h14" />
+                <polyline points="7 23 3 19 7 15" />
+                <path d="M21 13v2a4 4 0 0 1-4 4H3" />
+              </svg>
+            </button>
+          </div>
+
+          <!-- Volume Row -->
           <div class="volume-control">
             <button id="volumeBtn" class="btn-volume">🔊</button>
             <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1" title="100%">
           </div>
-
-          <!-- Previous -->
-          <button id="prevBtn" class="btn-prev">⏮</button>
-
-          <!-- Play/Pause -->
-          <button id="playPauseBtn" class="btn-play">
-            <span id="playIcon">▶</span>
-          </button>
-
-          <!-- Next -->
-          <button id="nextBtn" class="btn-next">⏭</button>
-
-          <!-- Loop -->
-          <button id="loopBtn" class="btn-loop" title="No Repeat">
-            <svg id="loopIcon" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="17 1 21 5 17 9" />
-              <path d="M3 11V9a4 4 0 0 1 4-4h14" />
-              <polyline points="7 23 3 19 7 15" />
-              <path d="M21 13v2a4 4 0 0 1-4 4H3" />
-            </svg>
-          </button>
         </div>
 
         <audio id="audio"></audio>
