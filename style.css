@@ -1,4 +1,4 @@
-/* Base Reset */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -9,8 +9,8 @@ body {
   font-family: 'Poppins', sans-serif;
   background: black;
   color: whitesmoke;
-  height: 100vh;
-  overflow: hidden;
+  height: 100%;
+  overflow-x: hidden;
 }
 
 video#bgVideo {
@@ -128,7 +128,7 @@ video#bgVideo {
 }
 
 
-/* 🎵 Playback Buttons Row */
+
 .playback-buttons {
   display: flex;
   justify-content: center;
@@ -139,7 +139,7 @@ video#bgVideo {
   width: 100%;
 }
 
-/* 🔊 Volume Control */
+
 .volume-control {
   margin-top: 20px;
   display: flex;
@@ -159,14 +159,13 @@ video#bgVideo {
   appearance: none;
 }
 
-/* WebKit Track */
+
 #volumeSlider::-webkit-slider-runnable-track {
   height: 5px;
   background: #ffffff;
   border-radius: 3px;
 }
 
-/* WebKit Thumb */
 #volumeSlider::-webkit-slider-thumb {
   -webkit-appearance: none;
   margin-top: -4.5px;
@@ -180,14 +179,14 @@ video#bgVideo {
   z-index: 2;
 }
 
-/* Firefox Track */
+
 #volumeSlider::-moz-range-track {
   height: 5px;
   background: #b91d1d;
   border-radius: 3px;
 }
 
-/* Firefox Thumb */
+
 #volumeSlider::-moz-range-thumb {
   height: 14px;
   width: 14px;
@@ -198,7 +197,7 @@ video#bgVideo {
   cursor: pointer;
 }
 
-/* 🔘 Button Appearance */
+
 .btn-play,
 .btn-prev,
 .btn-next,
@@ -226,7 +225,7 @@ video#bgVideo {
   color: #ffffff;
 }
 
-/* 🔙 Back Button */
+
 .back-button {
   position: absolute;
   top: 20px;
@@ -240,7 +239,7 @@ video#bgVideo {
   text-decoration: none;
 }
 
-/* 🧠 Base for All Buttons */
+
 button {
   all: unset;
   display: flex;
@@ -260,7 +259,7 @@ button:hover {
   color: #b91d1d;
 }
 
-/* 📱 Responsive Fix */
+
 @media (max-width: 600px) {
   body {
     overflow-y: auto;
@@ -325,7 +324,7 @@ button:hover {
   }
 }
 
-/* 🔵 Remove Blue Tap Highlight on Mobile */
+
 button, a {
   outline: none;
   -webkit-tap-highlight-color: transparent;
@@ -338,5 +337,24 @@ button:focus, a:focus {
 
 .volume-control svg {
   vertical-align: middle;
-  transform: translateY(2px); /* Adjust this value as needed */
+  transform: translateY(2px); 
 }
+
+.container {
+  position: relative;
+}
+
+.footer-credit {
+  position: absolute;
+  top: -90px;
+  right: 5px;
+  font-size: 13px;
+  font-family: 'Courier New', monospace;
+  color: #ffffff;
+  opacity: 0.7;
+  user-select: none;
+  pointer-events: none;
+}
+
+
+
