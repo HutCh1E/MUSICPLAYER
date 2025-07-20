@@ -21,6 +21,25 @@ let currentIndex = parseInt(urlParams.get('song')) || 0;
 
 let loopMode = 0;
 
+function setVolumeIcon(volume) {
+  if (volume == 0) {
+    volumeBtn.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">
+        <path d="M16.5 12L19 14.5l-1.5 1.5L15 13.5l-2.5 2.5L11 14.5 13.5 12 11 9.5 12.5 8l2.5 2.5L18 8l1.5 1.5-2.5 2.5zM5 9v6h4l5 5V4L9 9H5z"/>
+      </svg>`;
+  } else if (volume < 0.5) {
+    volumeBtn.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">
+        <path d="M7 9v6h4l5 5V4l-5 5H7zM16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.06c1.48-.74 2.5-2.26 2.5-4.03z"/>
+      </svg>`;
+  } else {
+    volumeBtn.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">
+        <path d="M7 9v6h4l5 5V4l-5 5H7zM16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.06c1.48-.74 2.5-2.26 2.5-4.03zM19.5 12c0 3.04-1.64 5.64-4.5 6.93v-2.06c1.77-.77 3-2.53 3-4.87s-1.23-4.1-3-4.87V5.07c2.86 1.29 4.5 3.89 4.5 6.93z"/>
+      </svg>`;
+  }
+}
+
 const songs = [
   {
     title: "Judas",
@@ -205,7 +224,7 @@ audio.addEventListener('ended', () => {
 
 volumeSlider.addEventListener('input', () => {
   audio.volume = volumeSlider.value;
-  volumeBtn.textContent = audio.volume == 0 ? '🔇' : audio.volume < 0.5 ? '🔈' : '🔊';
+  setVolumeIcon(audio.volume);
 });
 
 volumeBtn.addEventListener('click', () => {
@@ -217,5 +236,5 @@ volumeBtn.addEventListener('click', () => {
     audio.volume = audio.dataset.lastVol || 1;
     volumeSlider.value = audio.volume;
   }
-  volumeBtn.textContent = audio.volume == 0 ? '🔇' : audio.volume < 0.5 ? '🔈' : '🔊';
+  setVolumeIcon(audio.volume);
 });
