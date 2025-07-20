@@ -16,7 +16,6 @@ const titleText = document.getElementById('songTitle');
 const creatorImage = document.getElementById('creatorImage');
 const singerName = document.getElementById('singerName');
 
-
 const urlParams = new URLSearchParams(window.location.search);
 let currentIndex = parseInt(urlParams.get('song')) || 0;
 
@@ -89,7 +88,6 @@ const songs = [
       { time: 47, text: "Oh, no, no, no, ooh-ooh" },
     ]
   }
-
 ];
 
 function formatTime(time) {
@@ -114,20 +112,32 @@ function loadSong(index) {
 
   audio.play();
   video.play();
-  playIcon.textContent = '⏸';
+  playIcon.innerHTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">
+      <path d="M6 4h4v16H6zm8 0h4v16h-4z"/>
+    </svg>
+  `;
 }
 
-loadSong(currentIndex); 
+loadSong(currentIndex);
 
 playPauseBtn.addEventListener('click', () => {
   if (audio.paused) {
     audio.play();
     video.play();
-    playIcon.textContent = '⏸';
+    playIcon.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">
+        <path d="M6 4h4v16H6zm8 0h4v16h-4z"/>
+      </svg>
+    `;
   } else {
     audio.pause();
     video.pause();
-    playIcon.textContent = '▶';
+    playIcon.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">
+        <path d="M8 5v14l11-7z"/>
+      </svg>
+    `;
   }
 });
 
