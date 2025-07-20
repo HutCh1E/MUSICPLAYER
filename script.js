@@ -2,6 +2,7 @@ const audio = document.getElementById('audio');
 const video = document.getElementById('bgVideo');
 const videoSource = document.getElementById('videoSource');
 const progressBar = document.getElementById('progressBar');
+const progressFill = document.getElementById('progressFill');
 const timer = document.getElementById('timer');
 const playPauseBtn = document.getElementById('playPauseBtn');
 const playIcon = document.getElementById('playIcon');
@@ -24,19 +25,13 @@ let loopMode = 0;
 function setVolumeIcon(volume) {
   if (volume == 0) {
     volumeBtn.innerHTML = `
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">
-        <path d="M16.5 12L19 14.5l-1.5 1.5L15 13.5l-2.5 2.5L11 14.5 13.5 12 11 9.5 12.5 8l2.5 2.5L18 8l1.5 1.5-2.5 2.5zM5 9v6h4l5 5V4L9 9H5z"/>
-      </svg>`;
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-volume-off-icon lucide-volume-off"><path d="M16 9a5 5 0 0 1 .95 2.293"/><path d="M19.364 5.636a9 9 0 0 1 1.889 9.96"/><path d="m2 2 20 20"/><path d="m7 7-.587.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298V11"/><path d="M9.828 4.172A.686.686 0 0 1 11 4.657v.686"/></svg>`;
   } else if (volume < 0.5) {
     volumeBtn.innerHTML = `
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">
-        <path d="M7 9v6h4l5 5V4l-5 5H7zM16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.06c1.48-.74 2.5-2.26 2.5-4.03z"/>
-      </svg>`;
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-volume-icon lucide-volume"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"/></svg>`;
   } else {
     volumeBtn.innerHTML = `
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">
-        <path d="M7 9v6h4l5 5V4l-5 5H7zM16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.06c1.48-.74 2.5-2.26 2.5-4.03zM19.5 12c0 3.04-1.64 5.64-4.5 6.93v-2.06c1.77-.77 3-2.53 3-4.87s-1.23-4.1-3-4.87V5.07c2.86 1.29 4.5 3.89 4.5 6.93z"/>
-      </svg>`;
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-volume2-icon lucide-volume-2"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"/><path d="M16 9a5 5 0 0 1 0 6"/><path d="M19.364 18.364a9 9 0 0 0 0-12.728"/></svg>`;
   }
 }
 
@@ -173,7 +168,7 @@ prevBtn.addEventListener('click', () => {
 audio.addEventListener('timeupdate', () => {
   const current = audio.currentTime;
   const duration = audio.duration || 1;
-  progressBar.value = (current / duration) * 100;
+  progressFill.style.width = `${(current / duration) * 100}%`;
   timer.textContent = `${formatTime(current)} / ${formatTime(duration)}`;
 
   document.querySelectorAll('#lyrics p').forEach((line, i, lines) => {
@@ -189,10 +184,15 @@ audio.addEventListener('timeupdate', () => {
   });
 });
 
-progressBar.addEventListener('input', () => {
-  const seek = (progressBar.value / 100) * audio.duration;
-  audio.currentTime = seek;
-  video.currentTime = seek;
+progressBar.addEventListener('click', (e) => {
+  const rect = progressBar.getBoundingClientRect();
+  const clickX = e.clientX - rect.left;
+  const width = rect.width;
+  const percentage = clickX / width;
+  const seekTime = percentage * audio.duration;
+
+  audio.currentTime = seekTime;
+  video.currentTime = seekTime;
 });
 
 loopBtn.addEventListener('click', () => {
@@ -200,18 +200,40 @@ loopBtn.addEventListener('click', () => {
   switch (loopMode) {
     case 0:
       loopBtn.title = 'No Repeat';
-      loopBtn.style.color = 'white';
       audio.loop = false;
+      loopBtn.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-repeat-icon lucide-repeat">
+          <path d="m17 2 4 4-4 4"/>
+          <path d="M3 11v-1a4 4 0 0 1 4-4h14"/>
+          <path d="m7 22-4-4 4-4"/>
+          <path d="M21 13v1a4 4 0 0 1-4 4H3"/>
+        </svg>
+      `;
       break;
     case 1:
       loopBtn.title = 'Repeat One';
-      loopBtn.style.color = '#1db954';
       audio.loop = true;
+      loopBtn.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-repeat1-icon lucide-repeat-1">
+          <path d="m17 2 4 4-4 4"/>
+          <path d="M3 11v-1a4 4 0 0 1 4-4h14"/>
+          <path d="m7 22-4-4 4-4"/>
+          <path d="M21 13v1a4 4 0 0 1-4 4H3"/>
+          <path d="M11 10h1v4"/>
+        </svg>
+      `;
       break;
     case 2:
       loopBtn.title = 'Repeat All';
-      loopBtn.style.color = 'red';
       audio.loop = false;
+      loopBtn.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-repeat-icon lucide-repeat">
+          <path d="m17 2 4 4-4 4"/>
+          <path d="M3 11v-1a4 4 0 0 1 4-4h14"/>
+          <path d="m7 22-4-4 4-4"/>
+          <path d="M21 13v1a4 4 0 0 1-4 4H3"/>
+        </svg>
+      `;
       break;
   }
 });
