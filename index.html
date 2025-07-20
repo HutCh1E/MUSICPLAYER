@@ -21,7 +21,7 @@
         <img id="creatorImage" src="" alt="Creator" class="creator-img">
         <span id="singerName" class="singer-name"></span>
       </div>
-      
+
       <div class="lyrics" id="lyrics"></div>
 
       <div class="controls">
@@ -30,9 +30,10 @@
           <span id="timer">00:00 / 00:00</span>
         </div>
 
+        <!-- Button Group Start -->
         <div class="button-group">
           <!-- Playback Buttons Row -->
-          <div class="playback-buttons">
+          <div class="playback-buttons" style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
             <button id="prevBtn" class="btn-prev">⏮</button>
             <button id="playPauseBtn" class="btn-play">
               <span id="playIcon">▶</span>
@@ -49,12 +50,13 @@
             </button>
           </div>
 
-          <!-- Volume Row -->
-          <div class="volume-control">
+          <!-- Volume Control Row (Placed Below) -->
+          <div class="volume-control" style="margin-top: 15px; display: flex; align-items: center; gap: 10px; justify-content: center; width: 100%;">
             <button id="volumeBtn" class="btn-volume">🔊</button>
             <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1" title="100%">
           </div>
         </div>
+        <!-- Button Group End -->
 
         <audio id="audio"></audio>
       </div>
