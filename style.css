@@ -134,6 +134,7 @@ video#bgVideo {
   gap: 15px;
   margin-top: 20px;
   flex-wrap: nowrap;
+  width: 100%;
 }
 
 /* 🔊 Volume Control Below */
@@ -252,6 +253,7 @@ button:hover {
     flex-wrap: nowrap;
     justify-content: center;
     gap: 10px;
+    width: 100%;
     overflow-x: auto;
   }
 
