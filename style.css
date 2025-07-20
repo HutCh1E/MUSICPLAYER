@@ -248,8 +248,9 @@ button:hover {
 
   .playback-buttons {
     flex-wrap: nowrap;
-    overflow-x: auto;
+    justify-content: center;
     gap: 10px;
+    overflow-x: auto;
   }
 
   .volume-control {
