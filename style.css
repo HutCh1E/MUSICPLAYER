@@ -34,7 +34,7 @@ video#bgVideo {
   background: rgba(136, 132, 132, 0.4);
   padding: 30px;
   border-radius: 15px;
-  width: 50%;
+  width: 100%;
   max-width: 800px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   position: relative;
@@ -52,6 +52,7 @@ video#bgVideo {
   align-items: center;
   gap: 10px;
   margin-bottom: 20px;
+  flex-wrap: wrap;
 }
 
 .creator-img {
@@ -64,11 +65,10 @@ video#bgVideo {
 .singer-name {
   font-size: 16px;
   color: #ccc;
-  line-height: 1.2;
 }
 
 .lyrics {
-  height: 200px; 
+  height: 200px;
   overflow-y: auto;
   margin-bottom: 20px;
   padding: 20px;
@@ -80,9 +80,8 @@ video#bgVideo {
 
 .lyrics p {
   margin: 8px 0;
-  font-size: 17px; 
+  font-size: 17px;
   color: white;
-  transition: color 0.3s;
 }
 
 .lyrics p.active {
@@ -94,31 +93,20 @@ video#bgVideo {
   width: 8px;
 }
 
-.lyrics::-webkit-scrollbar-track {
-  background: transparent;
-}
-
 .lyrics::-webkit-scrollbar-thumb {
   background-color: #ff1a1a;
   border-radius: 10px;
-  box-shadow: 0 0 10px #ff1a1a, 0 0 20px #ff1a1a;
-}
-
-.lyrics::-webkit-scrollbar-thumb:hover {
-  background-color: #ff3333;
-  box-shadow: 0 0 12px #ff3333, 0 0 24px #ff3333;
+  box-shadow: 0 0 10px #ff1a1a;
 }
 
 .progress-container {
   display: flex;
   align-items: center;
   gap: 10px;
-  justify-content: space-between;
-  width: 100%;
+  flex-wrap: wrap;
 }
 
 #progressBar {
-  appearance: none;
   width: 100%;
   height: 6px;
   background: #444;
@@ -126,70 +114,12 @@ video#bgVideo {
   cursor: pointer;
 }
 
-#progressBar::-webkit-slider-runnable-track {
-  height: 6px;
-  background: #8b8b8b8a;
-  border-radius: 3px;
-}
-
-#progressBar::-moz-range-track {
-  height: 6px;
-  background: #616161;
-  border-radius: 3px;
-}
-
-#progressBar::-webkit-slider-thumb {
-  appearance: none;
-  width: 14px;
-  height: 14px;
-  background: #fff;
-  border-radius: 50%;
-  margin-top: -4px;
-}
-
-#progressBar::-moz-range-thumb {
-  width: 14px;
-  height: 14px;
-  background: #fff;
-  border: none;
-  border-radius: 50%;
-}
-
 #volumeSlider {
-  width: 90px;
+  width: 100px;
   height: 5px;
-  background: #ffffff;
+  background: #fff;
   border-radius: 3px;
   cursor: pointer;
-}
-
-#volumeSlider::-webkit-slider-runnable-track {
-  background: #ffffff;
-  height: 5px;
-  border-radius: 3px;
-}
-
-#volumeSlider::-moz-range-track {
-  background: #777575;
-  height: 5px;
-  border-radius: 3px;
-}
-
-#volumeSlider::-webkit-slider-thumb {
-  appearance: none;
-  width: 12px;
-  height: 12px;
-  background: #ffffff;
-  border-radius: 50%;
-  margin-top: -4px;
-}
-
-#volumeSlider::-moz-range-thumb {
-  width: 12px;
-  height: 12px;
-  background: #ffffff;
-  border: none;
-  border-radius: 50%;
 }
 
 .controls {
@@ -206,17 +136,20 @@ video#bgVideo {
   position: absolute;
   top: 20px;
   left: 20px;
-  color: #fff;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  z-index: 2;
   text-decoration: none;
-  font-size: 18px;
-  z-index: 1;
 }
 
 .button-group {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  gap: 20px;
+  gap: 15px;
 }
 
 button {
@@ -242,8 +175,8 @@ button:hover {
 .btn-prev,
 .btn-next,
 .btn-loop {
-  width: 90px;
-  height: 90px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.1);
   display: flex;
@@ -251,40 +184,16 @@ button:hover {
   justify-content: center;
 }
 
-.btn-play svg,
-.btn-prev svg,
-.btn-next svg,
-.btn-loop svg {
-  width: 20px;
-  height: 20px;
-  fill: currentColor;
-}
-
 .btn-play { color: #1db954; }
 .btn-prev, .btn-next { color: #ffffff; }
 .btn-loop { color: #f39c12; }
 
-.back-button {
-  display: inline-block;
-  padding: 10px 20px;
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  margin-bottom: 20px;
-  transition: background 0.3s, box-shadow 0.3s, transform 0.3s;
-}
-
-.back-button:hover {
-  background: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
-  transform: scale(1.05);
-  color: #ff0000;
-  text-shadow: 0 0 6px #000000;
-}
-
+/* ✅ RESPONSIVE DESIGN FIX */
 @media (max-width: 600px) {
+  body {
+    overflow-y: auto;
+  }
+
   .container {
     flex-direction: column;
     padding: 10px;
@@ -292,33 +201,39 @@ button:hover {
   }
 
   .panel {
-    width: 90%;
+    width: 95%;
     padding: 20px;
   }
 
   .button-group {
-    flex-direction: column;
-    gap: 15px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
   }
 
   .btn-play,
   .btn-prev,
   .btn-next,
   .btn-loop {
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
   }
 
   button {
     font-size: 22px;
   }
 
+  .lyrics {
+    height: 150px;
+    padding: 15px;
+  }
+
   #volumeSlider {
     width: 100%;
   }
 
-  .lyrics {
-    height: 150px;
-    padding: 15px;
+  .creator-info {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
