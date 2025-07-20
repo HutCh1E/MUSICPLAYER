@@ -284,7 +284,6 @@ button:hover {
   text-shadow: 0 0 6px #000000;
 }
 
-/* ✅ MOBILE RESPONSIVENESS */
 @media (max-width: 600px) {
   .container {
     flex-direction: column;
