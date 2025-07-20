@@ -34,7 +34,7 @@ video#bgVideo {
   background: rgba(136, 132, 132, 0.4);
   padding: 30px;
   border-radius: 15px;
-  width: 50%; /* increased from 40% */
+  width: 50%;
   max-width: 800px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   position: relative;
@@ -68,7 +68,7 @@ video#bgVideo {
 }
 
 .lyrics {
-  height: 200px; /* increased from 120px */
+  height: 200px; 
   overflow-y: auto;
   margin-bottom: 20px;
   padding: 20px;
@@ -78,10 +78,9 @@ video#bgVideo {
   box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
 }
 
-/* Bigger and cleaner lyrics text */
 .lyrics p {
   margin: 8px 0;
-  font-size: 17px; /* increased from 14px */
+  font-size: 17px; 
   color: white;
   transition: color 0.3s;
 }
@@ -91,7 +90,6 @@ video#bgVideo {
   font-weight: bold;
 }
 
-/* === Neon Scrollbar for Lyrics === */
 .lyrics::-webkit-scrollbar {
   width: 8px;
 }
@@ -111,7 +109,6 @@ video#bgVideo {
   box-shadow: 0 0 12px #ff3333, 0 0 24px #ff3333;
 }
 
-/* === Spotify-style Progress Bar === */
 .progress-container {
   display: flex;
   align-items: center;
@@ -158,7 +155,6 @@ video#bgVideo {
   border-radius: 50%;
 }
 
-/* === Volume Bar === */
 #volumeSlider {
   width: 90px;
   height: 5px;
@@ -196,7 +192,6 @@ video#bgVideo {
   border-radius: 50%;
 }
 
-/* === Controls === */
 .controls {
   text-align: center;
 }
@@ -217,7 +212,6 @@ video#bgVideo {
   z-index: 1;
 }
 
-/* === Unified Buttons with SVG Look === */
 .button-group {
   display: flex;
   justify-content: center;
@@ -225,7 +219,6 @@ video#bgVideo {
   gap: 20px;
 }
 
-/* Base button style */
 button {
   all: unset;
   display: flex;
@@ -245,7 +238,6 @@ button:hover {
   color: #b91d1d;
 }
 
-/* Playback control buttons (larger with background) */
 .btn-play,
 .btn-prev,
 .btn-next,
@@ -268,11 +260,9 @@ button:hover {
   fill: currentColor;
 }
 
-/* Individual Button Colors */
 .btn-play { color: #1db954; }
 .btn-prev, .btn-next { color: #ffffff; }
 .btn-loop { color: #f39c12; }
-
 
 .back-button {
   display: inline-block;
@@ -292,4 +282,44 @@ button:hover {
   transform: scale(1.05);
   color: #ff0000;
   text-shadow: 0 0 6px #000000;
+}
+
+/* ✅ MOBILE RESPONSIVENESS */
+@media (max-width: 600px) {
+  .container {
+    flex-direction: column;
+    padding: 10px;
+    height: auto;
+  }
+
+  .panel {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .button-group {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .btn-play,
+  .btn-prev,
+  .btn-next,
+  .btn-loop {
+    width: 70px;
+    height: 70px;
+  }
+
+  button {
+    font-size: 22px;
+  }
+
+  #volumeSlider {
+    width: 100%;
+  }
+
+  .lyrics {
+    height: 150px;
+    padding: 15px;
+  }
 }
